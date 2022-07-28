@@ -1,6 +1,7 @@
 Feature: Search
 
    @search_ex
+   @use
    Scenario: Search for existing text
        Given user navigates to main page 
        When user clicks search button
@@ -9,6 +10,7 @@ Feature: Search
        Then the second link follows to history block
 
    @search_no
+   @use
    Scenario: Search for no existig text
        Given user navigates to main page 
        When user clicks search button

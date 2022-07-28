@@ -23,6 +23,7 @@
         <maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
         <maven.failsafe.plugin.version>3.0.0-M5</maven.failsafe.plugin.version>
         <tags></tags>
+        <parallel.tests>4</parallel.tests>
         <webdriver.base.url></webdriver.base.url>
     </properties>
 
@@ -101,26 +102,11 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.plugin.version}</version>
                 <configuration>
-                    <includes>
-                        <include>**/*.java</include>
-                    </includes>
-                    <parallel>classes</parallel>
-                    <!-- <useUnlimitedThreads>true</useUnlimitedThreads> -->
-                    <threadCountSuites>4</threadCountSuites>
-                    <perCoreThreadCount>false</perCoreThreadCount>
-                    <!-- <useUnlimitedThreads>true</useUnlimitedThreads> -->
+                    <skip>true</skip>
                 </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <!-- <goal>integration-test</goal> -->
-                            <goal>test</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
 
-          <!--   <plugin>
+             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${maven.failsafe.plugin.version}</version>
                 <configuration>
@@ -128,8 +114,7 @@
                         <include>**/*.java</include>
                     </includes>
                     <parallel>methods</parallel>
-                    <threadCountSuites>4</threadCountSuites>
-                    <perCoreThreadCount>false</perCoreThreadCount>
+                    <useUnlimitedThreads>true</useUnlimitedThreads>
                 </configuration>
                 <executions>
                     <execution>
@@ -139,7 +124,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin> -->
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -155,17 +140,36 @@
                 <groupId>net.serenity-bdd.maven.plugins</groupId>
                 <artifactId>serenity-maven-plugin</artifactId>
                 <version>${serenity.version}</version>
+<!--                <dependencies>-->
+<!--                    <dependency>-->
+<!--                        <groupId>net.serenity-bdd</groupId>-->
+<!--                        <artifactId>serenity-single-page-report</artifactId>-->
+<!--                        <version>${serenity.version}</version>-->
+<!--                    </dependency>-->
+<!--                </dependencies>-->
+<!--                <configuration>-->
+<!--                    <tags>${tags}</tags>-->
+<!--                    <reports>single-page-html</reports>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>serenity-reports</id>-->
+<!--                        <phase>post-integration-test</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>aggregate</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+                <configuration>
+                    <tags>${tags}</tags>
+                </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>net.serenity-bdd</groupId>
-                        <artifactId>serenity-single-page-report</artifactId>
+                        <artifactId>serenity-core</artifactId>
                         <version>${serenity.version}</version>
                     </dependency>
                 </dependencies>
-                <configuration>
-                    <tags>${tags}</tags>
-                    <reports>single-page-html</reports>
-                </configuration>
                 <executions>
                     <execution>
                         <id>serenity-reports</id>

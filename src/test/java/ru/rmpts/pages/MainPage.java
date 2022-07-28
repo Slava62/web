@@ -27,7 +27,7 @@ public class MainPage extends PageObject {
     // Search block
     private By searchButton = By.cssSelector(".header__menu--search");
     private By searchField = By.cssSelector("form input");
-    private By searchFormButton = By.cssSelector("button");
+    private By searchFormButton = By.cssSelector("button span");
     private By searchResult = By.cssSelector(".search-result");
     private By searchResultItems = By.cssSelector("a h2");
     private By searchResultMessage = By.cssSelector("main h1");
